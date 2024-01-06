@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const router = require("./routes/userRoutes")
-const cors = require("cors")
+const router = require("./routes/userRoutes");
+const cors = require("cors");
 const mongoose = require("mongoose");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

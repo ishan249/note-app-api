@@ -46,7 +46,7 @@ router.post('/api/login', async (req, res) => {
 
     // Check if the user exists
     if (user) {
-      return res.status(200).json({ message: 'User verified.' });
+      return res.status(200).json({ message: 'User verified.', username:user.username });
     } else {
       return res.status(404).json({ error: 'User not found.' });
     }
