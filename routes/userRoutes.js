@@ -33,6 +33,29 @@ router.post("/api/adduser", async (req, res) => {
   }
 });
 
+
+router.post('/api/login', async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ error: 'username is required.' });
+    }
+
+    const user = await User.findOne({ username });
+
+    // Check if the user exists
+    if (user) {
+      return res.status(200).json({ message: 'User verified.' });
+    } else {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 router.get("/api/homepage", async (req, res) => {
   try {
     const { username } = req.query;
