@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
       heading: String,
       notetext: String,
       completed:Boolean,
+      date:String,
     },
   ],
 });

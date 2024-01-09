@@ -79,9 +79,9 @@ router.get("/api/homepage", async (req, res) => {
 
 router.post("/api/addnote", async (req, res) => {
   try {
-    const { username, heading, notetext, completed } = req.body;
+    const { username, heading, notetext, completed, date } = req.body;
 
-    if (!username || !heading || !notetext || completed === undefined) {
+    if (!username || !heading || !notetext || completed || !date === undefined) {
       return res
         .status(400)
         .json({
@@ -95,7 +95,7 @@ router.post("/api/addnote", async (req, res) => {
       return res.status(404).json({ error: "User not found." });
     }
 
-    user.notes.push({ heading, notetext, completed });
+    user.notes.push({ heading, notetext, completed , date});
 
     await user.save();
 
@@ -132,7 +132,7 @@ router.put('/api/editnote', async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({message:"note saved"});
+    res.status(200).json({message:"note status changed"});
   } catch (error) {
     console.error('Error editing note:', error);
     res.status(500).json({ error: 'Internal Server Error' });
